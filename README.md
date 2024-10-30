@@ -17,34 +17,56 @@ git clone something_will_be_updated
 
 ### Challenge 1: Basics of ink! and setting up a DAO contract
 
-#### Description
-A DAO is an online group where everyone gets to vote on decisions, so no single person is in charge. It’s a fair way for people to work together from anywhere!
-In this first challenge, you will have to build a DAO contract with ink! programming language. This DAO will have a name and the identifier.
-
-#### What you will learn?
-- Setup environment with Pop CLI
-- Introduce the components of ink!
-- Create storage items for the DAO, including DAO name and unique ID.
-- Deploying and using contract on Pop Network
-
-#### Goal of the challenge
-
-- [ ] Understand how to run the ink! contract, test and call the contract with `pop-cli`.
-- [ ] DAO can have a name on initialization.
+- **Difficulty**: Easy
+- **Submission Criteria:** ink! contract must
+    - Have a constructor accepting a name parameter.
+    - Have a storage field for the DAO name.
+    - Implement the `BasicDao` trait methods.
+    - Unit test for constructor and setting DAO name.
+    - Be built and deployed on Pop Network testnet.
+- **Submission Guidelines:**
+    - All test with prefix `challenge_1__` must pass.
+    - Verify with R0GUE DevRel, and post on X.
+- **Prize:** sub0 merch
 
 ### Challenge 2: Membership and voting mechanism to the DAO.
 
-#### Description
-Improve your contract by maintaining valid voters and votes.
+- **Difficulty**: Mid
+- **Submission Criteria:** ink! contract must
+    - Use a storage-optimized data-structure `Mapping` or `StorageVec`
+    - Store registered members, member votes, and proposals to vote on.
+    - Have method to register and de-register members.
+    - Implement the `GovernanceDao` trait methods.
+    - Have methods to create proposals and a method to vote on proposals.
+    - Unit tests for adding members, votes, and proposals.
+- **Submission Guidelines:**
+    - All test with prefix `challenge_2__` must pass.
+    - Verify with R0GUE DevRel, and post on X.
+- **Prize:** sub0 merch
 
-#### What you will learn?
-- How ink! storage works.
-- Storage optimized data structures: `StorageVec` and `Mapping`
-- Maintain a `StorageVec` of valid voter addresses.
-- Maintain a `Mapping` of voter addresses to votes.
+### Challenge 3:- Connect your DAO to the Super DAO with registration and voting
 
-#### Goal of the challenge
+- **Difficulty**: Mid
+- **Submission Criteria:** ink! contract must
+    - Import the Super DAO trait>
+    - Store Super DAO contract address.
+    - Register contract as member of Super DAO - using trait-based contract calling.
+    - Vote on proposals in the Super DAO - using trait-based contract calling.
+    - Create proposals to call another contract - using trait-based contract calling.
+    - E2E test for cross-contract call.
+- **Submission Guidelines:**
+    - All test with prefix `challenge_3__` must pass.
+    - Verify with R0GUE DevRel, and post on X.
+- **Prize:** Sub0 Merch & ink! sports towel
 
-- [ ] DAO can register new members.
-- [ ] DAO members has a permission to vote on the activities of the DAO.
-- [ ] DAO authority can also remove the member from the DAO.
+### Challenge 4: Support creating cross-chain proposals to the Super DAO
+
+- **Difficulty**: Advanced
+- **Submission Criteria:** ink! contract must
+    - Support creating cross-chain proposals to the Super DAO (XCM)
+    - A deployed contract on Pop Network Testnet
+    - Have a cross-chain proposal successfully executed
+- **Submission Guidelines:**
+    - All test with prefix `challenge_4__` must pass.
+    - Verify with R0GUE DevRel, and post on X.
+- **Prize:** Sub0 merch

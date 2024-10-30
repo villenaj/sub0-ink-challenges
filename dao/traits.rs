@@ -1,29 +1,31 @@
 use super::*;
 
-// Challenge 1: Basics of ink! and setting up a DAO contract
 #[ink::trait_definition]
-pub trait SimpleDao {
-    /// Returns the name of the DAO.
+pub trait NamedDao {
     #[ink(message)]
     fn name(&self) -> String;
 }
 
-// Challenge 2: Implement voter registration, proposal management, and voting in your DAO
 #[ink::trait_definition]
-pub trait SubDao {
-    // Register a new member to the DAO.
+pub trait BasicDao {
     #[ink(message)]
-    fn register_member(&mut self);
+    fn register_member(&mut self) -> Result<(), DaoError>;
 
-    // Register a new member to the DAO.
     #[ink(message)]
-    fn deregister_member(&mut self);
+    fn deregister_member(&mut self) -> Result<(), DaoError>;
 
-    // Returns all the DAO members.
     #[ink(message)]
-    fn get_members(&self) -> Vec<AccountId>;
+    fn get_member(&self, member: AccountId) -> Option<AccountId>;
 
-    // Returns the number of votes a DAO member has.
     #[ink(message)]
-    fn vote_count(&self, id: AccountId) -> u32;
+    fn create_proposal(&mut self) -> Result<(), DaoError>;
+
+    #[ink(message)]
+    fn get_proposal(&self, proposal: u32) -> Option<BasicProposal>;
+
+    #[ink(message)]
+    fn vote(&mut self, proposal: u32) -> Result<(), DaoError>;
+
+    #[ink(message)]
+    fn vote_count(&self, proposal: i32, member: AccountId) -> Option<u32>;
 }
