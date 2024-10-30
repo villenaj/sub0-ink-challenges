@@ -5,14 +5,20 @@ ink! programming language challenges made for the Sub0 Reset Bangkok
 
 Before tackling the challenges, you need to setup your local environment for ink! contract development first.
 
-Install `pop-cli`: https://learn.onpop.io/cli/installing-pop-cli/
+- Install `pop-cli`: https://learn.onpop.io/cli/installing-pop-cli/
 
 ## About the challenges
 
 To tackle the challenges, first fork and clone the repository
 
 ```
-git clone something_will_be_updated
+git clone https://github.com/r0gue-io/sub0-ink-challenges.git
+```
+
+To test your contract, run: 
+
+```
+cargo test
 ```
 
 ### Challenge 1: Basics of ink! and setting up a DAO contract
