@@ -1,5 +1,9 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
 
+use ink::{prelude::vec::Vec, primitives::AccountId};
+
+mod traits;
+
 #[ink::contract]
 mod dao {
     #[ink(storage)]
@@ -8,24 +12,31 @@ mod dao {
     }
 
     impl Dao {
+        // Constructor that initializes the values for the contract.
         #[ink(constructor)]
         pub fn new(init_value: bool) -> Self {
             Self { value: init_value }
         }
 
+        // Constructor that initializes the default values for the contract.
         #[ink(constructor)]
         pub fn default() -> Self {
             Self::new(Default::default())
         }
 
         #[ink(message)]
-        pub fn flip(&mut self) {
-            self.value = !self.value;
+        pub fn flip(&mut self, value: bool) {
+            self.value = value;
         }
+    }
+}
 
-        #[ink(message)]
-        pub fn get(&self) -> bool {
-            self.value
-        }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn mock_test() {
+        assert_eq!(1 + 1, 2);
     }
 }
