@@ -8,24 +8,33 @@ pub trait NamedDao {
 
 #[ink::trait_definition]
 pub trait BasicDao {
-    #[ink(message)]
-    fn register_member(&mut self) -> Result<(), DaoError>;
+    // Vote registration.
 
     #[ink(message)]
-    fn deregister_member(&mut self) -> Result<(), DaoError>;
+    fn register_voter(&mut self) -> Result<(), DaoError>;
 
     #[ink(message)]
-    fn get_member(&self, member: AccountId) -> Option<AccountId>;
+    fn deregister_voter(&mut self) -> Result<(), DaoError>;
+
+    #[ink(message)]
+    fn has_voter(&self, voter: AccountId) -> bool;
+
+    // Proposal management.
 
     #[ink(message)]
     fn create_proposal(&mut self) -> Result<(), DaoError>;
 
     #[ink(message)]
-    fn get_proposal(&self, proposal: u32) -> Option<BasicProposal>;
+    fn remove_proposal(&mut self, proposal_id: u32) -> Result<(), DaoError>;
 
     #[ink(message)]
-    fn vote(&mut self, proposal: u32) -> Result<(), DaoError>;
+    fn get_proposal(&self, proposal_id: u32) -> Option<BasicProposal>;
+
+    // Voting.
 
     #[ink(message)]
-    fn vote_count(&self, proposal: i32, member: AccountId) -> Option<u32>;
+    fn vote(&mut self, proposal_id: u32) -> Result<(), DaoError>;
+
+    #[ink(message)]
+    fn vote_count(&self, member: AccountId) -> u32;
 }

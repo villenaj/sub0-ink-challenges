@@ -47,55 +47,63 @@ mod dao {
         #[ink(message)]
         fn name(&self) -> String {
             // - Returns the name of the Dao
-            todo!();
+            self.name.clone()
         }
     }
 
     impl BasicDao for Dao {
         #[ink(message)]
-        fn register_member(&mut self) -> Result<(), DaoError> {
-            // - Error: Throw error `Error::MemberAlreadyRegistered` if the member is registered
+        fn register_voter(&mut self) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::MemberAlreadyRegistered` if the member is registered
             // - Success: Register a new `member` to the Dao
             Ok(())
         }
 
         #[ink(message)]
-        fn deregister_member(&mut self) -> Result<(), DaoError> {
-            // - Error: Throw error `Error::MemberNotRegistered` if the member is not registered
-            // - Success: Register a new `member` to the Dao
+        fn deregister_voter(&mut self) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::MemberNotRegistered` if the member is not registered
+            // - Success: Deregister a new `voter` from the Dao
             Ok(())
         }
 
         #[ink(message)]
-        fn get_member(&self, _member: AccountId) -> Option<AccountId> {
-            // - Success: Returns the Dao `member` by address. `None` if there is no member found.
+        fn has_voter(&self, voter: AccountId) -> bool {
+            // - Success: Return if the voter is registered.
             todo!();
         }
 
         #[ink(message)]
         fn create_proposal(&mut self) -> Result<(), DaoError> {
-            // - Error: Throw error `Error::ProposalDoesNotExist` if the proposal is not created
-            // - Success: Create a new proposal that stores `votes` from `members`
+            // - Error: Throw error `DaoError::MemberNotRegistered` if the member is not registered
+            // - Success: Create a new proposal that stores `votes` from `voters`
             Ok(())
         }
 
         #[ink(message)]
-        fn get_proposal(&self, _proposal: u32) -> Option<BasicProposal> {
-            // - Success: Returns the proposal detail
-            todo!();
+        fn remove_proposal(&mut self, proposal_id: u32) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::MemberNotRegistered` if the member is not registered
+            // - Error: Throw error `DaoError::ProposalDoesNotExist` if the proposal is not created
+            // - Success: Create a new proposal that stores `votes` from `voters`
+            Ok(())
         }
 
         #[ink(message)]
-        fn vote(&mut self, _proposal: u32) -> Result<(), DaoError> {
-            // - Error: Throw error `Error::MemberNotRegistered` if the member is not registered
-            // - Error: Throw error `Error::ProposalDoesNotExist` if the proposal is not created
+        fn vote(&mut self, proposal_id: u32) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::MemberNotRegistered` if the member is not registered
+            // - Error: Throw error `DaoError::ProposalDoesNotExist` if the proposal is not created
             // - Success: Vote on the proposal
             Ok(())
         }
 
         #[ink(message)]
-        fn vote_count(&self, _proposal: i32, _member: AccountId) -> Option<u32> {
-            // - Returns the number of `votes` a Dao `member` voted
+        fn get_proposal(&self, proposal_id: u32) -> Option<BasicProposal> {
+            // - Success: Returns the proposal detail
+            todo!();
+        }
+
+        #[ink(message)]
+        fn vote_count(&self, voter: AccountId) -> u32 {
+            // - Returns the number of `votes` a Dao `voter` voted
             todo!();
         }
     }
@@ -111,34 +119,18 @@ mod dao {
         }
 
         #[ink::test]
-        fn challenge_1__test_name() {
-            let dao = Dao::new("any name");
-            assert_eq!(dao.name, "any name");
+        fn challenge_1_test_name() {
+            let dao = Dao::new(String::from("any name"));
+            assert_eq!(dao.name, String::from("any name"));
         }
 
         #[ink::test]
-        fn challenge_2__test_member_registration() {
-            let dao = Dao::default();
-            let accounts = ink::env::test::default_accounts::<Environment>();
-
-            assert_eq!(dao.get_member(accounts.alice), None);
-            ink::env::test::set_caller::<ink::env::DefaultEnvironment>(accounts.alice);
-
-            assert_ok!(dao.register_member());
-            assert_err!(dao.register_member(), Error::MemberAlreadyRegistered);
-            assert_eq!(dao.members.len(), 1);
-            assert!(dao.members.contains(&accounts.alice));
-            assert_eq!(dao.get_member(accounts.alice), Some(account.alice));
-        }
+        fn challenge_2_test_voter_registration() {}
 
         #[ink::test]
-        fn challenge_2__test_vote_count() {
-            todo!();
-        }
+        fn challenge_2_test_proposal_management() {}
 
         #[ink::test]
-        fn challenge_2__test_create_proposal() {
-            todo!();
-        }
+        fn challenge_2_test_vote() {}
     }
 }

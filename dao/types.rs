@@ -20,5 +20,5 @@ pub enum DaoError {
 )]
 #[ink::scale_derive(Encode, Decode, TypeInfo)]
 pub struct BasicProposal {
-    vote_count: u32,
+    pub vote_count: u32,
 }
