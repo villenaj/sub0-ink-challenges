@@ -47,7 +47,7 @@ mod dao {
         #[ink(message)]
         fn name(&self) -> String {
             // - Returns the name of the Dao
-            self.name.clone()
+            todo!();
         }
     }
 
@@ -108,6 +108,29 @@ mod dao {
         }
     }
 
+    impl SubDao for Dao {
+        #[ink(message)]
+        fn create_superdao_contract_call_proposal(&mut self) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
+            // - Success: Create a SuperDao proposal to call a contract method.
+            Ok(())
+        }
+
+        #[ink(message)]
+        fn vote_superdao_proposal(&mut self, proposal_id: u32, vote: bool) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
+            // - Success: Vote a SuperDao proposal.
+            Ok(())
+        }
+
+        #[ink(message)]
+        fn create_superdao_cross_chain_proposal(&mut self) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
+            // - Success: Create a SuperDao proposal to execute a cross-chain message.
+            Ok(())
+        }
+    }
+
     #[cfg(test)]
     mod tests {
         use super::*;
@@ -125,12 +148,47 @@ mod dao {
         }
 
         #[ink::test]
-        fn challenge_2_test_voter_registration() {}
+        fn challenge_2_test_voter_registration() {
+            // Example of the unit test for voter registration.
+            let mut dao = Dao::default();
+            let accounts = ink::env::test::default_accounts::<Environment>();
+
+            ink::env::test::set_caller::<ink::env::DefaultEnvironment>(accounts.alice);
+            assert!(dao.register_voter().is_ok());
+            assert_eq!(dao.register_voter(), Err(DaoError::VoterAlreadyRegistered;));
+            assert_eq!(dao.voters.len(), 1);
+            assert!(dao.has_voter(accounts.alice));
+
+            ink::env::test::set_caller::<ink::env::DefaultEnvironment>(accounts.alice);
+            assert!(dao.deregister_voter().is_ok());
+            assert_eq!(dao.deregister_voter(), Err(DaoError::VoterNotRegistered));
+            assert_eq!(dao.voters.get(0), None);
+            assert!(!dao.has_voter(accounts.alice));
+        }
 
         #[ink::test]
-        fn challenge_2_test_proposal_management() {}
+        fn challenge_2_test_proposal_management() {
+            todo!("Challenge 2");
+        }
 
         #[ink::test]
-        fn challenge_2_test_vote() {}
+        fn challenge_2_test_vote() {
+            todo!("Challenge 3");
+        }
+
+        #[ink::test]
+        fn challenge_3_test_create_superdao_contract_call_proposal() {
+            todo!("Challenge 3");
+        }
+
+        #[ink::test]
+        fn challenge_3_test_vote_superdao_proposal() {
+            todo!("Challenge 3");
+        }
+
+        #[ink::test]
+        fn challenge_4_test_vote_superdao_cross_chain_proposal() {
+            todo!("Challenge 4");
+        }
     }
 }

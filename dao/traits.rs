@@ -38,3 +38,19 @@ pub trait BasicDao {
     #[ink(message)]
     fn vote_count(&self, member: AccountId) -> u32;
 }
+
+#[ink::trait_definition]
+pub trait SubDao {
+    // Connect your DAO to the Super DAO with registration and voting
+
+    #[ink(message)]
+    fn create_superdao_contract_call_proposal(&mut self) -> Result<(), DaoError>;
+
+    #[ink(message)]
+    fn vote_superdao_proposal(&mut self, proposal_id: u32, vote: bool) -> Result<(), DaoError>;
+
+    // Support creating cross-chain proposals to the Super DAO
+
+    #[ink(message)]
+    fn create_superdao_cross_chain_proposal(&mut self) -> Result<(), DaoError>;
+}
