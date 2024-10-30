@@ -1,5 +1,15 @@
-# Sub0 `ink!` Challenges
+<div align="center">
+
+# Sub0 ink! Challenges 
+
+<p>
 ink! programming language challenges made for the Sub0 Reset Bangkok
+</p>
+
+<img height="70px" alt="Polkadot SDK Logo" src="https://github.com/user-attachments/assets/c60b6b92-a263-480c-b297-3535454ad3f6"/>
+ 
+</div>
+
 
 ## Getting started
 
