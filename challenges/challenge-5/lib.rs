@@ -13,7 +13,6 @@
 // - **Prize:** Sub0 merch & ink! sports towel
 
 use crate::types::*;
-
 use ink::contract_ref;
 use superda0_traits::superdao::SuperDao;
 

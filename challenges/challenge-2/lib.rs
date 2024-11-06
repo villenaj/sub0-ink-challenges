@@ -14,6 +14,7 @@
 //     - Verify with R0GUE DevRel, and post on X.
 // - **Prize:** sub0 merch
 
+use crate::types::*;
 use ink::primitives::AccountId;
 
 mod types;
