@@ -35,7 +35,7 @@ cargo test
 
 <div align="center">
 
-# 🏆 ChALLENGES
+# 🏆 CHALLENGES
 
 | ✒️ Challenges | Description                                                          | Link to the challenge                       |
 | ------------- | -------------------------------------------------------------------- | ------------------------------------------- |
