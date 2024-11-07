@@ -27,6 +27,7 @@ mod dao {
     #[ink(storage)]
     pub struct Dao {
         superdao: contract_ref!(SuperDao),
+        voters: StorageVec<AccountId>,
         name: String,
     }
 
@@ -38,6 +39,7 @@ mod dao {
             let mut instance = Self {
                 name,
                 superdao: superdao.into(),
+                voters: StorageVec::new(),
             };
             instance
         }

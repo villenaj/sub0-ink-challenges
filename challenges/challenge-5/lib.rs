@@ -26,6 +26,7 @@ mod dao {
     #[ink(storage)]
     pub struct Dao {
         superdao: contract_ref!(SuperDao),
+        voters: StorageVec<AccountId>,
         name: String,
     }
 
