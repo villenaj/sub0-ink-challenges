@@ -62,10 +62,6 @@ cargo test
   - Unit test for constructor and setting DAO name.
   - Be built and deployed on Pop Network testnet.
 - **Submission Guidelines:**
-  <<<<<<< HEAD
-  =======
-  - All test with prefix `challenge_1__` must pass.
-    > > > > > > > 719a1fe (chore: update README.md)
   - Verify with R0GUE DevRel, and post on X.
 - **Prize:** sub0 merch
 
