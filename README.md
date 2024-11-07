@@ -80,10 +80,6 @@ cargo test
   - Have methods to create proposals and a method to vote on proposals.
   - Unit tests for adding members, votes, and proposals.
 - **Submission Guidelines:**
-  <<<<<<< HEAD
-  =======
-  - All test with prefix `challenge_2__` must pass.
-    > > > > > > > 719a1fe (chore: update README.md)
   - Verify with R0GUE DevRel, and post on X.
 - **Prize:** sub0 merch
 
