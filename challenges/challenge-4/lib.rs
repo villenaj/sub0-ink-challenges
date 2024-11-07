@@ -11,29 +11,28 @@
 //     - Verify with R0GUE DevRel, and post on X.
 // - **Prize:** Sub0 merch
 
-use crate::types::*;
-use ink::contract_ref;
-use superdao_traits::SuperDao;
-
-mod types;
-
 #[ink::contract]
 mod dao {
-    use super::*;
+    use ink::{contract_ref, prelude::string::String, storage::StorageVec, xcm::prelude::*};
+    use minidao_common::*;
+    use superdao_traits::{Call, ChainCall, SuperDao, Vote};
 
     #[ink(storage)]
     pub struct Dao {
         superdao: contract_ref!(SuperDao),
+        name: String,
     }
 
     impl Dao {
-        // Constructor that initi        // Constructor that initializes the values for the contract.
+        // Constructor that initializes the values for the contract.
         #[ink(constructor)]
         pub fn new(name: String, superdao: AccountId) -> Self {
-            let instance = Self {
+            // Register your Dao as a member of the Superdao.
+            let mut instance = Self {
+                name,
                 superdao: superdao.into(),
+                voters: StorageVec::new(),
             };
-            // TODO: Register your Dao as a member of the Superdao.
             instance
         }
 
@@ -74,6 +73,7 @@ mod dao {
     #[cfg(test)]
     mod tests {
         use super::*;
+        use crate::dao::Dao;
 
         #[ink::test]
         fn test_vote_superdao_cross_chain_proposal() {

@@ -1,43 +1,61 @@
 #![cfg_attr(not(feature = "std"), no_std, no_main)]
 
-// # ✒️ Challenge 5: Build a UI for your DAO
-//
-// NOTE: Using this contract to combine the functionalities of challenge 4 contract and challenge 3 contract. Compile and deploy on Pop Network then building a UI for it.
+// # ✒️ Challenge 7 (Bonus): Use the Pop API to create a fungibles token for token-backed voting
 //
 // - **Difficulty:** Mid
-// - **Submission Criteria:** The UI must support
-//     - Registering & viewing members
-//     - Voting on and viewing proposals
-//     - Viewing overall proposal votes
-// - **Submission Guidelines:** Verify with R0GUE or Dedot DevRel, and post on X
-// - **Prize:** Sub0 merch & ink! sports towel
+// - **Submission Criteria:** DAO contract must
+//   - Use the fungibles Pop API to create a new asset.
+//   - Mint the asset for newly registered voter.
+//   - Use the asset for token-backed voting by creating a new storage item to track the `Prevote` of each Superdao `Proposal`.
+//   - Registered voter in the Dao will use the minted tokens to vote on the `Prevote`.
+//   - If number of approvals in the `Prevote` is more than the disapprovals after the `deadline`, submit the vote to the proposal on Superdao.
+// - **Submission Guidelines:** Verify with R0GUE DevRel, post on X with GitHub link
+// - **Prize:** Pop ring candy
 
 #[ink::contract]
 mod dao {
     use ink::{
         contract_ref,
         prelude::{string::String, vec},
-        storage::StorageVec,
+        storage::{Mapping, StorageVec},
         xcm::prelude::*,
     };
     use minidao_common::*;
+    use pop_api::v0::fungibles::traits::Psp22;
     use superdao_traits::{Call, ChainCall, ContractCall, SuperDao, Vote};
+
+    #[derive(Clone, Default)]
+    #[cfg_attr(
+        feature = "std",
+        derive(Debug, PartialEq, Eq, ink::storage::traits::StorageLayout)
+    )]
+    #[ink::scale_derive(Encode, Decode, TypeInfo)]
+    pub struct Prevote {
+        pub deadline: BlockNumber,
+        pub aye_votes: Vec<(AccountId, Balance)>,
+        pub nay_votes: Vec<(AccountId, Balance)>,
+    }
 
     #[ink(storage)]
     pub struct Dao {
-        superdao: contract_ref!(SuperDao),
         name: String,
+        prevotes: Mapping<u32, Prevote>,
+        voters: StorageVec<AccountId>,
+        token: AccountId,
+        superdao: contract_ref!(SuperDao),
     }
 
     impl Dao {
         // Constructor that initializes the values for the contract.
         #[ink(constructor)]
-        pub fn new(name: String, superdao: AccountId) -> Self {
+        pub fn new(name: String, superdao: AccountId, token: AccountId) -> Self {
             // Register your Dao as a member of the Superdao.
             let mut instance = Self {
                 name,
+                token,
                 superdao: superdao.into(),
                 voters: StorageVec::new(),
+                prevotes: Mapping::new(),
             };
             instance
         }
@@ -58,7 +76,7 @@ mod dao {
 
         #[ink(message)]
         pub fn has_voter(&self, voter: AccountId) -> bool {
-            todo!();
+            todo!()
         }
 
         #[ink(message)]
@@ -76,21 +94,17 @@ mod dao {
         }
 
         #[ink(message)]
-        pub fn vote_proposal(&mut self, proposal_id: u32, vote: bool) -> Result<(), DaoError> {
+        pub fn submit_prevote(&mut self, proposal_id: u32, approved: bool) -> Result<(), DaoError> {
             // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
-            // - Success: Vote a SuperDao proposal.
+            // - Success: Dao member prevote is recoreded with the current balance of the voter.
             Ok(())
         }
-    }
 
-    #[cfg(test)]
-    mod tests {
-        use super::*;
-        use crate::dao::Dao;
-
-        #[ink::test]
-        fn test_vote_superdao_cross_chain_proposal() {
-            todo!("Challenge 4");
+        #[ink(message)]
+        pub fn vote_proposal(&mut self, proposal_id: u32) -> Result<(), DaoError> {
+            // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
+            // - Error: Throw error `DaoError::ProposalDoesNotExist` if the proposal does not found.
+            Ok(())
         }
     }
 }
