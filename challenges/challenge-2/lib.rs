@@ -88,6 +88,7 @@ mod dao {
         #[ink(message)]
         pub fn get_proposal(&self, proposal_id: u32) -> Option<BasicProposal> {
             // - Success: Returns the proposal detail
+            todo!()
         }
 
         #[ink(message)]
