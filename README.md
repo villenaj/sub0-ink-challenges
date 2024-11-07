@@ -50,6 +50,13 @@ cargo test
 </div>
 
 <br/>
+
+<div align="center">
+  
+<img width="912" alt="Screenshot 2024-11-07 at 18 24 10" src="https://github.com/user-attachments/assets/bb40edbd-de7c-4acc-a88b-59c2013fd565">
+
+</div>
+
 <br/>
 
 ## ✒️ Challenge 1: Basics of ink! and setting up a DAO contract
