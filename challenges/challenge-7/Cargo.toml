@@ -10,7 +10,7 @@ pop-api = { git = "https://github.com/r0gue-io/pop-node", branch = "chungquantin
  "fungibles",
 ] }
 superdao-traits = { git = "https://github.com/r0gue-io/multichain-superdao", branch = "main", default-features = false }
-minidao-common = { path = "../../common" }
+minidao-common = { path = "../../common", default-features = false }
 
 [lib]
 path = "lib.rs"
