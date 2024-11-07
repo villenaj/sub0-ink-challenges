@@ -13,7 +13,7 @@
 
 use crate::types::*;
 use ink::contract_ref;
-use superda0_traits::superdao::SuperDao;
+use superdao_traits::SuperDao;
 
 mod types;
 
