@@ -4,11 +4,12 @@
 //
 // - **Difficulty:** Mid
 // - **Submission Criteria:** DAO contract must
-//   - Use the fungibles Pop API to create a new asset.
-//   - Mint the asset for newly registered voter.
-//   - Use the asset for token-backed voting by creating a new storage item to track the `Prevote` of each Superdao `Proposal`.
-//   - Registered voter in the Dao will use the minted tokens to vote on the `Prevote`.
-//   - If number of approvals in the `Prevote` is more than the disapprovals after the `deadline`, submit the vote to the proposal on Superdao.
+//     - Store PSP22 token contract address.
+//     - Use the fungibles Pop API to create a new asset.
+//     - Mint the asset for newly registered voter.
+//     - Use the asset for token-backed voting by creating a new storage item to track the `Prevote` of each Superdao `Proposal`.
+//     - Registered voter in the Dao will use the minted tokens to vote on the `Prevote`.
+//     - If number of approvals in the `Prevote` is more than the disapprovals after the `deadline`, submit the vote to the proposal on Superdao.
 // - **Submission Guidelines:** Verify with R0GUE DevRel, post on X with GitHub link
 // - **Prize:** Pop ring candy
 

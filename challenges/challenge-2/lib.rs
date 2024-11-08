@@ -6,9 +6,8 @@
 // - **Submission Criteria:** ink! contract must
 //     - Use a storage-optimized data-structure `Mapping` or `StorageVec`
 //     - Store registered members, member votes, and proposals to vote on.
-//     - Have method to register and de-register members.
-//     - Implement the `GovernanceDao` trait methods.
-//     - Have methods to create proposals and a method to vote on proposals.
+//     - Implement methods to register and de-register members.
+//     - Implement methods to create proposals and a method to vote on proposals.
 //     - Unit tests for adding members, votes, and proposals.
 // - **Submission Guidelines:**
 //     - Verify with R0GUE DevRel, and post on X.

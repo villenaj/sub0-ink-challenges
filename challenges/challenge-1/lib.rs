@@ -6,7 +6,7 @@
 // - **Submission Criteria:** ink! contract must
 //     - Have a constructor accepting a name parameter.
 //     - Have a storage field for the DAO name.
-//     - Implement the `BasicDao` trait methods.
+//     - Implement the provided methods.
 //     - Unit test for constructor and setting DAO name.
 //     - Be built and deployed on Pop Network testnet.
 // - **Submission Guidelines:**
