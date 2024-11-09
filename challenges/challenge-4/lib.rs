@@ -38,6 +38,12 @@ mod dao {
         }
 
         #[ink(message)]
+        pub fn get_name(&self) -> String {
+            // - Returns the name of the Dao
+            todo!()
+        }
+
+        #[ink(message)]
         pub fn register_voter(&mut self) -> Result<(), DaoError> {
             // - Error: Throw error `DaoError::VoterAlreadyRegistered` if the voter is registered
             // - Success: Register a new `voter` to the Dao
