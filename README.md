@@ -46,6 +46,11 @@ cargo test
 | Challenge 6   | Ideate and design a multichain, permissionless solution for Polkadot | [Take challenge](./challenges/challenge-6/) |
 | Challenge 7   | Use the Pop API to create a fungibles token for token-backed voting  | [Take challenge](./challenges/challenge-7/) |
 
+Superdao Contract Address on Pop Network
+```
+12oasvoSoRKxQ7ABrjgCftm78g4wvfyLQ33prWK69htwNsc7
+```
+
 </div>
 
 <br/>
