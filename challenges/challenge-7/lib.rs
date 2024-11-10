@@ -86,14 +86,20 @@ mod dao {
         }
 
         #[ink(message)]
-        pub fn create_superdao_cross_chain_proposal(&mut self) -> Result<(), DaoError> {
+        pub fn create_superdao_cross_chain_proposal(
+            &mut self,
+            call: ChainCall,
+        ) -> Result<(), DaoError> {
             // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
             // - Success: Create a SuperDao proposal to execute a cross-chain message.
             Ok(())
         }
 
         #[ink(message)]
-        pub fn create_contract_call_proposal(&mut self) -> Result<(), DaoError> {
+        pub fn create_superdao_contract_call_proposal(
+            &mut self,
+            call: ContractCall,
+        ) -> Result<(), DaoError> {
             // - Error: Throw error `DaoError::VoterNotRegistered` if the voter is not registered
             // - Success: Create a SuperDao proposal to call a contract method.
             Ok(())
